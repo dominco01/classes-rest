@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <script type="text/javascript">
+        function requestApiKey(){
+
+            fetch("/key", {
+            method: "POST",
+            })
+            .then((response) => response.json())
+            .then((result) => {
+                document.getElementById("key").innerText = result.key;
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+        }
+    
+    </script>
+</head>
+<body>
+    <h1>Get meta data from URL</h1>
+    <div>
+        <form  action="/form" method="GET">
+            <label for="url">Enter url: </label><br>
+            <input name="url" value="https://open.spotify.com/track/2dHHgzDwk4BJdRwy9uXhTO">
+            <select name="type" >
+                <option value="all">all</option>
+                <option value="image">image</option>
+                <option value="title">title</option>
+                <option value="description">description</option>
+            </select>
+            
+            <label for="api_key">Api key:</label>
+            <input name="api_key">
+            <input type="submit" value="Submit">
+        </form>
+    </div>
+    <div style="position:absolute; right:20px" >
+        <button onclick="requestApiKey()">REQUEST API KEY</button>
+        <div id="key"></div>
+    </div>
+</body>
+</html>

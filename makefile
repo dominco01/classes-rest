@@ -1,0 +1,3 @@
+compile:
+	node server.js
+	
